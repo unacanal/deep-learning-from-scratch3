@@ -1,4 +1,7 @@
-is_simple_core = False # True
+# =============================================================================
+# step23.py부터 step32.py까지는 simple_core를 이용해야 합니다.
+is_simple_core = False  # True
+# =============================================================================
 
 if is_simple_core:
     from dezero.core_simple import Variable
@@ -20,5 +23,21 @@ else:
     from dezero.core import as_variable
     from dezero.core import setup_variable
     from dezero.core import Config
-    
+    from dezero.layers import Layer
+    from dezero.models import Model
+    from dezero.datasets import Dataset
+    from dezero.dataloaders import DataLoader
+    from dezero.dataloaders import SeqDataLoader
+
+    import dezero.datasets
+    import dezero.dataloaders
+    import dezero.optimizers
+    import dezero.functions
+    import dezero.functions_conv
+    import dezero.layers
+    import dezero.utils
+    import dezero.cuda
+    import dezero.transforms
+
 setup_variable()
+__version__ = '0.0.13'

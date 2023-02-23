@@ -3,6 +3,9 @@ import numpy as np
 import contextlib
 
 
+# =============================================================================
+# Config
+# =============================================================================
 class Config:
     enable_backprop = True
 
@@ -21,6 +24,9 @@ def no_grad():
     return using_config('enable_backprop', False)
 
 
+# =============================================================================
+# Variable / Function
+# =============================================================================
 class Variable:
     __array_priority__ = 200
 
@@ -141,6 +147,9 @@ class Function:
         raise NotImplementedError()
 
 
+# =============================================================================
+# 사칙연산 / 연산자 오버로드
+# =============================================================================
 class Add(Function):
     def forward(self, x0, x1):
         y = x0 + x1
@@ -198,7 +207,7 @@ def sub(x0, x1):
 
 def rsub(x0, x1):
     x1 = as_array(x1)
-    return sub(x1, x0)
+    return Sub()(x1, x0)
 
 
 class Div(Function):
@@ -220,7 +229,7 @@ def div(x0, x1):
 
 def rdiv(x0, x1):
     x1 = as_array(x1)
-    return div(x1, x0)
+    return Div()(x1, x0)
 
 
 class Pow(Function):
